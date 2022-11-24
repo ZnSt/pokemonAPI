@@ -1,16 +1,22 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
-};
+import { Component } from "react";
+import { ToastContainer } from "react-toastify";
+import { PokemonForm } from "./PokemonForm";
+import { PokemonInfo } from "./PokemonInfo";
+export class App extends Component {
+  state = {
+    pokemonName: "",
+  };
+  handleFormSubmitPokemon = (pokemonName) => {
+    this.setState({ pokemonName });
+  };
+  render() {
+    const { pokemonName } = this.state;
+    return (
+      <div>
+        <PokemonForm onSubmit={this.handleFormSubmitPokemon} />
+        <PokemonInfo pokemonName={pokemonName} />
+        <ToastContainer />
+      </div>
+    );
+  }
+}
